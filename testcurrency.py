@@ -18,7 +18,14 @@ print("All tests completed successfully.")
 def test_before_space():
     """Test procedure for before_space"""
     print('Testing before_space')
-
+    result = currency.before_space("hello world")
+    introcs.assert_equals('hello', result, 'Did not meet testing qualifications')
+    result = currency.before_space('Bob Andrew    ')
+    introcs.assert_equals('Bob', result, 'Did not meet testing qualifications')
+    result = currency.before_space('Bob  Andrew')
+    introcs.assert_equals('Bob', result, 'Did not meet testing qualifications')
+    result = currency.before_space(' ')
+    introcs.assert_equals('', result, 'Did not meet testing qualifications')
 
 def test_after_space():
     """Test procedure for after_space"""

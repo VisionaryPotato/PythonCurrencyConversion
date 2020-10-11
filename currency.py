@@ -22,4 +22,7 @@ def before_space(s):
     Parameter s: the string to slice
     Precondition: s is a string with at least one space in it
     """
-    pass
+    newVal = introcs.strip(s)
+    spaceIndex = introcs.find_str(newVal, ' ')
+    newString = newVal[:spaceIndex]
+    return newString
