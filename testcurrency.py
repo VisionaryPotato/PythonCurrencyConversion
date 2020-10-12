@@ -11,10 +11,6 @@ Date:   10/10/2020
 import introcs
 import currency
 
-print("All tests completed successfully.")
-
-
-
 def test_before_space():
     """Test procedure for before_space"""
     print('Testing before_space')
@@ -26,15 +22,31 @@ def test_before_space():
     introcs.assert_equals('Bob', result, 'Did not meet testing qualifications')
     result = currency.before_space(' ')
     introcs.assert_equals('', result, 'Did not meet testing qualifications')
+    result = currency.before_space('hello ')
+    introcs.assert_equals('hello', result, 'Did not meet testing qualifications')
+    result = currency.before_space(' hello')
+    introcs.assert_equals('', result, 'Did not meet testing qualifications')
 
 def test_after_space():
     """Test procedure for after_space"""
     print('Testing after_space')
-
-
+    result = currency.after_space("hello world")
+    introcs.assert_equals('world', result, 'Did not meet testing qualifications')
+    result = currency.after_space(' ')
+    introcs.assert_equals('', result, 'Did not meet testing qualifications')
+    result = currency.after_space(' hello')
+    introcs.assert_equals('hello', result, 'Did not meet testing qualifications')
+    result = currency.after_space('hello  ')
+    introcs.assert_equals(' ', result, 'Did not meet testing qualifications')
+    result = currency.after_space('Bob Andrew ')
+    introcs.assert_equals('Andrew ', result, 'Did not meet testing qualifications')
 def test_first_inside_quotes():
     """Test procedure for first_inside_quotes"""
     print('Testing first_inside_quotes')
+    result = currency.first_inside_quotes('A "B C" D')
+    introcs.assert_equals('B C', result,'Did not meet testing qualifications')
+    result = currency.first_inside_quotes('A "B C" D "E F" G')
+    introcs.assert_equals('B C', result,'Did not meet testing qualifications')
 
 
 def test_get_src():
