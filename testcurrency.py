@@ -40,28 +40,63 @@ def test_after_space():
     introcs.assert_equals(' ', result, 'Did not meet testing qualifications')
     result = currency.after_space('Bob Andrew ')
     introcs.assert_equals('Andrew ', result, 'Did not meet testing qualifications')
+
+
 def test_first_inside_quotes():
     """Test procedure for first_inside_quotes"""
     print('Testing first_inside_quotes')
     result = currency.first_inside_quotes('A "B C" D')
-    introcs.assert_equals('B C', result,'Did not meet testing qualifications')
+    introcs.assert_equals('B C', result, 'Did not meet testing qualifications.')
     result = currency.first_inside_quotes('A "B C" D "E F" G')
-    introcs.assert_equals('B C', result,'Did not meet testing qualifications')
+    introcs.assert_equals('B C', result, 'Did not meet testing qualifications.')
+    result = currency.first_inside_quotes('"A B"')
+    introcs.assert_equals('A B', result, 'Did not meet testing qualifications.')
+    result = currency.first_inside_quotes('A B""""""""')
+    introcs.assert_equals('', result, 'Did not meet testing qualifications.')
 
 
 def test_get_src():
     """Test procedure for get_src"""
     print('Testing get_src')
-
+    result = currency.get_src(
+        '{"success": true, "src": "2 United States Dollars", "dst": "1.772814 Euros", "error":''""}')
+    introcs.assert_equals('2 United States Dollars', result, 'Did not meet test requirements.')
+    result = currency.get_src('{"success":true, "src":"2 United States Dollars", "dst":"1.772814 Euros", "error":""}')
+    introcs.assert_equals('2 United States Dollars', result, 'Did not meet test requirements.')
+    result = currency.get_src('{"success":false,"src":"","dst":"","error":"Source currency code is invalid."}')
+    introcs.assert_equals("", result, 'Did not meet test requirements.')
+    result = currency.get_src('{"success": true,"src": "","dst": "","error": "Source currency code is invalid."}')
+    introcs.assert_equals("", result, 'Did not meet test requirements.')
+    result = currency.get_src('{"success": false, "src": "", "dst": "", "error": "The rate for currency EUF is not present."}')
+    introcs.assert_equals('', result, 'Did not meet test requirements')
 
 def test_get_dst():
     """Test procedure for get_dst"""
     print('Testing get_dst')
-
+    result = currency.get_dst('{"success": true, "src": "2 United States Dollars", "dst": "1.772814 Euros", "error": ""}')
+    introcs.assert_equals('1.772814 Euros', result, 'Did not meet test requirements.')
+    result = currency.get_dst('{"success":true,"src":"2 United States Dollars","dst":"1.772814 Euros","error":""}')
+    introcs.assert_equals('1.772814 Euros', result, 'Did not meet test requirements.')
+    result = currency.get_dst('{"success":false,"src":"","dst":"","error":"Source currency code is invalid."}')
+    introcs.assert_equals("", result, 'Did not meet test requirements.')
+    result = currency.get_dst('{"success": true,"src": "","dst": "","error": "Source currency code is invalid."}')
+    introcs.assert_equals("", result, 'Did not meet test requirements.')
+    result = currency.get_dst('{"success": false, "src": "", "dst": "", "error": "The rate for currency EUF is not present."}')
+    introcs.assert_equals('', result, 'Did not meet test requirements')
 
 def test_has_error():
     """Test procedure for has_error"""
     print('Testing has_error')
+    result = currency.has_error(
+        '{"success": true, "src": "2 United States Dollars", "dst": "1.772814 Euros", "error": ""}')
+    introcs.assert_false(result, 'Did not meet test requirements.')
+    result = currency.has_error('{"success":true,"src":"2 United States Dollars","dst":"1.772814 Euros","error":""}')
+    introcs.assert_false(result, 'Did not meet test requirements.')
+    result = currency.has_error('{"success":false,"src":"","dst":"","error":"Source currency code is invalid."}')
+    introcs.assert_true(result, 'Did not meet test requirements.')
+    result = currency.has_error('{"success": true,"src": "","dst": "","error": "Source currency code is invalid."}')
+    introcs.assert_true(result, 'Did not meet test requirements.')
+
 
 
 def test_service_response():
@@ -70,7 +105,7 @@ def test_service_response():
 
 
 def test_iscurrency():
-    """Test procedure for iscurrency"""
+    """Test procedurae for iscurrency"""
     print('Testing iscurrency')
 
 
