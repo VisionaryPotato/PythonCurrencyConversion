@@ -106,14 +106,18 @@ def test_service_response():
     introcs.assert_equals('{"success": true, "src": "2.5 United States Dollars", "dst": "2.2160175 Euros", "error": ""}', result)
     result = currency.service_response('USSD','EUR',2.5)
     introcs.assert_equals('{"success": false, "src": "", "dst": "", "error": "The rate for currency USSD is not present."}',result)
-    result = currency.service_response('USD','MEX', 20)
+    result = currency.service_response('USD','MEX',20)
     introcs.assert_equals('{"success": false, "src": "", "dst": "", "error": "The rate for currency MEX is not present."}', result)
-    result = currency.service_response('USD','USD', -2.5)
+    result = currency.service_response('USD','USD',-2.5)
     introcs.assert_equals('{"success": true, "src": "-2.5 United States Dollars", "dst": "-2.5 United States Dollars", "error": ""}', result)
 
 def test_iscurrency():
     """Test procedurae for iscurrency"""
     print('Testing iscurrency')
+    result = currency.iscurrency('ABC')
+    introcs.assert_true(result)
+    result = currency.iscurrency('USD')
+    introcs.assert_false(result)
 
 
 def test_exchange():

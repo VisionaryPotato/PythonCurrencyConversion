@@ -200,8 +200,19 @@ def service_response(src, dst, amt):
     """
     assert introcs.isalpha(src)
     assert introcs.isalpha(dst)
-    assert introcs.assert_true(introcs.isbool(amt))
-    assert introcs.isfloat(amt)
-
+    typeofval = (type(amt))
+    assert typeofval == float or typeofval == int
     return introcs.urlread('https://ecpyfac.ecornell.com/python/currency/fixed?src='+src+'&dst='+dst+'&amt='+str(amt)+'&key='+APIKEY)
-#print(service_response('USD', 'EUR', True))
+#print(service_response('USD',"EUR",'1'))
+
+
+def iscurrency(currency):
+    """
+    Returns True if currency is a valid (3 letter code for a) currency.
+
+    It returns False otherwise.
+
+    Parameter currency: the currency code to verify
+    Precondition: currency is a nonempty string with only letters
+    """
+    assert(has_error(currency))
