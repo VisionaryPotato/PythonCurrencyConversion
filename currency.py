@@ -215,6 +215,9 @@ def iscurrency(currency):
     Parameter currency: the currency code to verify
     Precondition: currency is a nonempty string with only letters
     """
+    assert introcs.isalpha(currency)
+    assert not len(currency) == 0
+
     src = currency
     dst = currency
     testService_Responce = service_response(src, dst, 12)
@@ -240,3 +243,10 @@ def exchange(src,dst,amt):
     Parameter amt: amount of currency to convert
     Precondition amt is a float or int
     """
+    assert get_dst(service_response(src,dst,amt))
+
+    json = service_response(src,dst,amt)
+    getDST = get_dst(json)
+    index = introcs.find_str(getDST, ' ')
+    result = float(getDST[:index])
+    return result
