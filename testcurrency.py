@@ -115,14 +115,19 @@ def test_iscurrency():
     """Test procedurae for iscurrency"""
     print('Testing iscurrency')
     result = currency.iscurrency('ABC')
-    introcs.assert_true(result)
-    result = currency.iscurrency('USD')
     introcs.assert_false(result)
-
+    result = currency.iscurrency('USD')
+    introcs.assert_true(result)
+    result = currency.iscurrency('JPY',)
+    introcs.assert_true(result)
 
 def test_exchange():
     """Test procedure for exchange"""
     print('Testing exchange')
+    result = currency.exchange('USD', 'EUR', 2.5)
+    introcs.assert_equals('2.5', result)
+    result = currency.service_response('USSD', 'EUR', 2.5)
+    introcs.assert_equals('',result, 'Did not meet test requirements.')
 
 
 test_before_space()

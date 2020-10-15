@@ -215,4 +215,28 @@ def iscurrency(currency):
     Parameter currency: the currency code to verify
     Precondition: currency is a nonempty string with only letters
     """
-    assert(has_error(currency))
+    src = currency
+    dst = currency
+    testService_Responce = service_response(src, dst, 12)
+    result = len(get_dst(testService_Responce)) > 0
+    return result
+
+
+def exchange(src,dst,amt):
+    """
+    Returns the amount of currency received in the given exchange.
+
+    In this exchange, the user is changing amt money in currency src to the currency
+    dst. The value returned represents the amount in currency currency_to.
+
+    The value returned has type float.
+
+    Parameter src: the currency on hand
+    Precondition src is a string for a valid currency code
+
+    Parameter dst: the currency to convert to
+    Precondition dst is a string for a valid currency code
+
+    Parameter amt: amount of currency to convert
+    Precondition amt is a float or int
+    """
