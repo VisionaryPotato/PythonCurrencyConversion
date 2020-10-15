@@ -125,9 +125,9 @@ def test_exchange():
     """Test procedure for exchange"""
     print('Testing exchange')
     result = currency.exchange('USD', 'EUR', 2.5)
-    introcs.assert_equals('2.5', result)
-    result = currency.service_response('USSD', 'EUR', 2.5)
-    introcs.assert_equals('',result, 'Did not meet test requirements.')
+    introcs.assert_floats_not_equal(2.5, result)
+    result = currency.exchange('USSD', 'EUR', 2.5)
+    introcs.assert_floats_equal(0,result)
 
 
 test_before_space()

@@ -214,6 +214,7 @@ def iscurrency(currency):
 
     Parameter currency: the currency code to verify
     Precondition: currency is a nonempty string with only letters
+<<<<<<< Updated upstream
     """
     src = currency
     dst = currency
@@ -240,3 +241,4 @@ def exchange(src,dst,amt):
     Parameter amt: amount of currency to convert
     Precondition amt is a float or int
     """
+print(service_response('USD','EUR', 2.5))
