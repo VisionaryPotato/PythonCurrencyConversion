@@ -9,10 +9,7 @@ Author: Sergio Olvera
 Date:   10/10/2020
 """
 import introcs
-
 APIKEY = 'H2u53AGBwvuiofitARa0lKQgnnkNThgrV8hn3XGxYT0e'
-
-
 def before_space(s):
     """
     Returns the substring of s up to, but not including, the first space.
@@ -23,9 +20,7 @@ def before_space(s):
     Precondition: s is a string with at least one space in it
     """
     count = introcs.count_str(s, ' ')
-    # print(count)
     assert count > 0, 'PRECONDITION: Need at least one space in string.'
-    # s = introcs.lstrip(s)
     spaceIndex = introcs.find_str(s, ' ')
     s = s[:spaceIndex]
     return s
@@ -44,7 +39,6 @@ def after_space(s):
     assert count > 0, 'PRECONDITION: Need at least one space in string.'
     spaceIndex = introcs.find_str(s, ' ')
     s = s[spaceIndex + 1:]
-    # s = introcs.strip(s)
     return s
 
 
@@ -137,8 +131,6 @@ def get_dst(json):
     json = json[findDST + 1:]
     FindDST = introcs.find_str(json, ':')
     json = json[FindDST + 1:]
-
-    #print(first_inside_quotes(json))
     return first_inside_quotes(json)
 
 
@@ -170,7 +162,6 @@ def has_error(json):
     findError = introcs.rfind_str(json, ':')
     json = json[findError:]
     return len(first_inside_quotes(json))>0
-    #return
 
 
 def service_response(src, dst, amt):
@@ -202,8 +193,8 @@ def service_response(src, dst, amt):
     assert introcs.isalpha(dst)
     typeofval = (type(amt))
     assert typeofval == float or typeofval == int
-    return introcs.urlread('https://ecpyfac.ecornell.com/python/currency/fixed?src='+src+'&dst='+dst+'&amt='+str(amt)+'&key='+APIKEY)
-#print(service_response('USD',"EUR",'1'))
+    return introcs.urlread('https://ecpyfac.ecornell.com/python/currency/fixed?src='
+                           ''+src+'&dst='+dst+'&amt='+str(amt)+'&key='+APIKEY)
 
 
 def iscurrency(currency):
@@ -214,7 +205,6 @@ def iscurrency(currency):
 
     Parameter currency: the currency code to verify
     Precondition: currency is a nonempty string with only letters
-<<<<<<< Updated upstream
     """
     assert introcs.isalpha(currency)
     assert not len(currency) == 0
