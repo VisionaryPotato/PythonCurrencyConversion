@@ -8,9 +8,17 @@ Author: Sergio Olvera
 Date:   10/10/2020
 """
 import currency
-SRC = input('3-letter code for original currency: ')
-DST = input('3-letter code for the new currency: ')
-AMT = float(input('Amount of the original currency: '))
-dst = float(currency.exchange(SRC,DST,AMT))
-dst = round(dst, 3)
-EXCHANGE = print('You can exchange '+str(AMT)+' '+ SRC + ' for ' +str(dst) + ' ' + DST +'.')
+
+
+def printCurrency():
+    SRC = input('3-letter code for original currency: ')
+    DST = input('3-letter code for the new currency: ')
+    AMT = float(input('Amount of the original currency: '))
+    dst = float(currency.exchange(SRC, DST, AMT))
+    dst = round(dst, 3)
+    EXCHANGE = print('You can exchange ' + str(AMT) + ' ' + SRC + ' for ' + str(dst) + ' ' + DST + '.')
+
+
+printCurrency()
+while(input('Do you want to continue? Yes or No: ') != 'no'):
+    printCurrency()
